@@ -6,9 +6,14 @@ import { countries } from "../../data/countries";
 import styles from './Form.module.css'
 
 import { SearchType } from "../../types";
+
 import Alert from "../Alert/Alert";
 
-export default function Form() {
+type FormProps = {
+    fetchWeather: (search: SearchType) => Promise<void>
+}
+
+export default function Form({ fetchWeather }: FormProps) {
 
     //States
     const [search, setSearch] = useState<SearchType>({
@@ -35,6 +40,7 @@ export default function Form() {
         }
 
         setAlert('')
+        fetchWeather(search)
 
     }
 
